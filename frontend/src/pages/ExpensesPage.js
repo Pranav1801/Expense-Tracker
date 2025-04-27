@@ -24,6 +24,8 @@ import { getExpenses, deleteExpense } from '../api/api';
 const ExpensesPage = () => {
 const [expenses, setExpenses] = useState([]);
 const [open, setOpen] = useState(false);
+const [error, setError] = useState(null);
+const [loading, setLoading] = useState(false);
 const [currentExpense, setCurrentExpense] = useState(null);
 
 useEffect(() => {
@@ -32,10 +34,13 @@ useEffect(() => {
 
 const fetchExpenses = async () => {
   try {
-    const { data } = await getExpenses();
-    setExpenses(data);
-  } catch (error) {
-    console.error('Error fetching expenses', error);
+    const  data  = await getExpenses();
+    setExpenses(data || []); // Fallback to empty array
+  } catch (err) {
+    setError('Failed to load expenses');
+    setExpenses([]); // Ensure array remains valid
+  } finally {
+    setLoading(false);
   }
 };
 
