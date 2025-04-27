@@ -55,8 +55,8 @@ const ExpenseForm = ({ expense, onSubmitSuccess, onCancel }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
             label="Amount"
@@ -68,7 +68,8 @@ const ExpenseForm = ({ expense, onSubmitSuccess, onCancel }) => {
             helperText={formik.touched.amount && formik.errors.amount}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+
+        <Grid item xs={12} md={6}>
           <FormControl fullWidth>
             <InputLabel>Category</InputLabel>
             <Select
@@ -83,18 +84,8 @@ const ExpenseForm = ({ expense, onSubmitSuccess, onCancel }) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label="Description"
-            name="description"
-            multiline
-            rows={3}
-            value={formik.values.description}
-            onChange={formik.handleChange}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
             label="Date"
@@ -106,9 +97,24 @@ const ExpenseForm = ({ expense, onSubmitSuccess, onCancel }) => {
             error={formik.touched.date && Boolean(formik.errors.date)}
           />
         </Grid>
+
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            label="Description"
+            name="description"
+            value={formik.values.description}
+            onChange={formik.handleChange}
+          />
+        </Grid>
+
         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-          <Button variant="outlined" onClick={onCancel}>Cancel</Button>
-          <Button variant="contained" type="submit">Save</Button>
+          <Button variant="outlined" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button variant="contained" type="submit">
+            Save Expense
+          </Button>
         </Grid>
       </Grid>
     </form>

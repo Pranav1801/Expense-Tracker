@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ExpensesPage from './pages/ExpensesPage';
+import AddExpensePage from './pages/AddExpensePage';
 import Navbar from './components/Navbar';
 import Box from '@mui/material/Box';  // If using Material-UI
 
@@ -40,6 +41,14 @@ function App() {
             element={
               <PrivateRoute>
                 <ExpensesPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/expenses/new"
+            element={
+              <PrivateRoute>
+                <AddExpensePage />
               </PrivateRoute>
             }
           />
